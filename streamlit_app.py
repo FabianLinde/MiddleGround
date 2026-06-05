@@ -8,8 +8,8 @@ from src.core import calculate_best_hub
 from src.ui import render_logistics_map
 
 # --- Page Config ---
-st.set_page_config(page_title="CentriFlight", page_icon="✈️", layout="wide")
-st.title("✈️ CentriFlight: Interactive Hub Optimizer")
+st.set_page_config(page_title="MiddleGround", page_icon="✈️", layout="wide")
+st.title("✈️ MiddleGround: Interactive Hub Optimizer")
 
 df_all_hubs = pd.DataFrame(HUB_DATA)
 
