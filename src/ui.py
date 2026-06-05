@@ -37,27 +37,21 @@ def render_logistics_map(df_travelers, df_hubs):
             projection="natural earth"
         )
         
-        # Style travelers as circles
-        traveler_mask = df_map_all["Type"] == "Traveler"
-        fig.for_each_trace(lambda t: t.update(
-            marker=dict(
-                size=15,
-                line=dict(width=2, color="white"),
-                opacity=0.85
-            ),
-            name="Traveler" if "Traveler" in t.name else "Potential Destination"
-        ) if "Traveler" in t.name else t.update(
-            marker=dict(
-                size=18,
-                symbol="star",
-                line=dict(width=2, color="white"),
-                opacity=0.9
-            )
-        ))
+        # Update traces for better styling
+        for trace in fig.data:
+            if "Traveler" in trace.name:
+                trace.marker.size = 15
+                trace.marker.line = dict(width=2, color="white")
+                trace.marker.opacity = 0.85
+            else:
+                trace.marker.size = 18
+                trace.marker.symbol = "star"
+                trace.marker.line = dict(width=2, color="white")
+                trace.marker.opacity = 0.9
         
         fig.update_layout(
             height=550,
-            margin={"r": 0, "t": 0, "l": 0, "b": 0},
+            margin=dict(r=0, t=0, l=0, b=0),
             geo=dict(
                 bgcolor="rgba(240, 248, 255, 0.3)",
                 showland=True,
